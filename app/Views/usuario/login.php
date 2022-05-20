@@ -18,7 +18,7 @@
     
 
     <div id="login">
-        <h3 class="text-center text-white pt-5">Login form</h3>
+        <h3 class="text-center text-white pt-5">Login</h3>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
@@ -30,15 +30,15 @@
                                 <input type="text" name="username" id="username" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="password" class="text-info">Password:</label><br>
-                                <input type="password" name="password" id="password" class="form-control">
+                                <label for="password" class="text-info">Senha</label><br>
+                                <input type="password" name="senha" id="password" class="form-control">
                             </div>
                             <div id="register-link" class="text-right">
-                                <a href="<?php echo base_url()?>/usuario/cadastrar" class="text-info">Register here</a>
+                                <a href="<?php echo base_url()?>/usuario/cadastrar" class="text-info">Cadastre-se aqui</a>
                             </div>
                             <div class="form-group">
   
-                                <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
+                                <input type="submit" name="submit" class="btn btn-info btn-md" value="Login">
                             </div>
                             
                         </form>

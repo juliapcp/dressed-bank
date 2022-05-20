@@ -9,7 +9,7 @@ class ContaModel extends Model
 
     protected $table = 'conta';
     protected $primaryKey = 'numero';
-    protected $allowedFields = ['tipo, username, numero'];
+    protected $allowedFields = ['tipo', 'username', 'numero'];
 
     public function getDados($numero = null)
     {
@@ -21,7 +21,7 @@ class ContaModel extends Model
 
     public function insereConta($data)
     {
-        return $this->insert($data);
+        $this->insert($data);
     }
 
     public function alteraConta($numero, $data)

@@ -9,7 +9,7 @@ class UsuarioModel extends Model
 
     protected $table = 'usuario';
     protected $primaryKey = 'username';
-    protected $allowedFields = ['username, nome, senha'];
+    protected $allowedFields = ['username', 'nome', 'senha'];
 
     public function getDados($username = null)
     {
@@ -21,8 +21,7 @@ class UsuarioModel extends Model
 
     public function insereUsuario($data)
     {
-        var_dump($data);
-        return $this->insert($data);
+        $this->insert($data);
     }
 
     public function alteraUsuario($username, $data)

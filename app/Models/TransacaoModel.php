@@ -9,7 +9,7 @@ class TransacaoModel extends Model
 
     protected $table = 'transacao';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['tipo, valor, conta, metodoPagamento, dataTransacao, descricao'];
+    protected $allowedFields = ['tipo', 'valor', 'conta', 'metodoPagamento', 'dataTransacao', 'descricao'];
 
     public function getDados($id = null)
     {
