@@ -36,7 +36,7 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Usuario::loginUsuario');
 $routes->get('/usuario/cadastrar', 'Usuario::mostraCadastroUsuario');
 
-//$routes->post('/usuario/cadastrar', 'Usuario::insertUsuario');
+$routes->post('/usuario/cadastrar', 'Usuario::insertUsuario');
 
 $routes->get('/transacao/cadastro', 'Transacao::mostraCadastro');
 

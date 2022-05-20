@@ -11,7 +11,7 @@
 }
 ?>
 
-<form action="insertusuario" method="post">
+<form action="/usuario/cadastrar" method="post">
         <div class="form-group">
           <div class="col-md-4 mb-3">
             <label for="nome">Nome:</label>
@@ -20,7 +20,7 @@
         </div>
         <div class="form-group">
           <div class="col-md-4 mb-3">
-            <label for="username">Username(e-mail):</label>
+            <label for="username">Username:</label>
             <input type="text" class="form-control" id="username" name="username">
           </div>
         </div>

@@ -17,7 +17,7 @@ class Usuario extends BaseController
 
 
 
-    public function insertusuario(){
+    public function insertUsuario(){
 		$rules = [
 			'nome' => 'required|min_length[3]|max_length[50]',
 			'username' => 'required|min_length[6]|max_length[50]',
@@ -33,11 +33,13 @@ class Usuario extends BaseController
 				'senha' =>$this->request->getVar('senha')
 
 			);	
-		$customers_model->insereUsuario($data);
+			var_dump($data);
+			$customers_model->insereUsuario($data);
+
 		return redirect()->to(base_url('/'));
 		}
 		else{
-			$this->mostraCadastroUsuario();		
+			return redirect()->to(base_url('/'));	
 		}
 		
 	}

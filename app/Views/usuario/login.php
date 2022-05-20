@@ -26,8 +26,8 @@
                         <form id="login-form" class="form" action="" method="post">
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
-                                <label for="username" class="text-info">Username(e-mail):</label><br>
-                                <input type="text" name="email" id="email" class="form-control">
+                                <label for="username" class="text-info">Username:</label><br>
+                                <input type="text" name="username" id="username" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
