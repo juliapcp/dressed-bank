@@ -7,7 +7,9 @@ class Usuario extends BaseController
 {
     public function mostraCadastroUsuario()
     {
-        return view('/usuario/cadastrar');
+		$usuarioModel = new UsuarioModel();
+		$data['usuarios'] = $usuarioModel-> getDados();
+        return view('/usuario/cadastrar', $data);
     }
 
     public function loginUsuario()
@@ -19,9 +21,9 @@ class Usuario extends BaseController
 
     public function insertUsuario(){
 		$rules = [
-			'nome' => 'required|min_length[3]|max_length[50]',
-			'username' => 'required|min_length[6]|max_length[50]',
-			'senha'=> 'required|min_length[1]|max_length[60]', 
+			'nome' => 'required|max_length[50]',
+			'username' => 'required|max_length[50]',
+			'senha'=> 'required|max_length[60]', 
 		];
 		$usuario = new UsuarioModel();
 		if ($this->validate($rules)){
@@ -33,13 +35,12 @@ class Usuario extends BaseController
 				'senha' =>$this->request->getVar('senha')
 
 			);	
-			
 			$usuario->insereUsuario($data);
 
-		//return redirect()->to(base_url('/'));
+		// return redirect()->to(base_url('/'));
 		}
 		else{
-			//return redirect()->to(base_url('/'));	
+			// return redirect()->to(base_url('/'));	
 		}
 		
 	}
