@@ -23,7 +23,7 @@ class Usuario extends BaseController
 			'username' => 'required|min_length[6]|max_length[50]',
 			'senha'=> 'required|min_length[1]|max_length[60]', 
 		];
-		$customers_model = new UsuarioModel();
+		$usuario = new UsuarioModel();
 		if ($this->validate($rules)){
 			$data = array(
 				'nome' => $this->request->getVar('nome'),
@@ -33,13 +33,13 @@ class Usuario extends BaseController
 				'senha' =>$this->request->getVar('senha')
 
 			);	
-			var_dump($data);
-			$customers_model->insereUsuario($data);
+			
+			$usuario->insereUsuario($data);
 
-		return redirect()->to(base_url('/'));
+		//return redirect()->to(base_url('/'));
 		}
 		else{
-			return redirect()->to(base_url('/'));	
+			//return redirect()->to(base_url('/'));	
 		}
 		
 	}

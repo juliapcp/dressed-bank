@@ -32,11 +32,11 @@ class Database extends Config
      */
     public $default = [
         'DSN'      => '',
-        'hostname' => 'localhost',
-        'username' => 'dressedbank',
-        'password' => '',
-        'database' => '',
-        'DBDriver' => 'MySQLi',
+        'hostname' => 'ec2-3-224-164-189.compute-1.amazonaws.com',
+        'username' => 'qrbdgmqqvwdrvm',
+        'password' => 'dcb67b1c94fa15b98eb367ac8a40477de2425aae00035e93178fa422455f7019',
+        'database' => 'des93u6u3mej2j',
+        'DBDriver' => 'postgre',
         'DBPrefix' => '',
         'pConnect' => false,
         'DBDebug'  => (ENVIRONMENT !== 'production'),
