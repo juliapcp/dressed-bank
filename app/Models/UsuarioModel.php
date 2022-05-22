@@ -35,4 +35,7 @@ class UsuarioModel extends Model
             $this->delete($username);
         }
     }
+    public function checkUserPassword($data){
+        return $this->where(['username' => $data['username'], 'senha' =>$data['senha']])->first();
+    }
 }

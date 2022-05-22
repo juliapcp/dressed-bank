@@ -39,31 +39,6 @@ class Usuario extends BaseController
 			$usuario->insereUsuario($data);
 			return redirect()->to(base_url('/'));
 		}
-
-
-		// $rules = [
-		// 	'nome' => 'required|max_length[50]',
-		// 	'username' => 'required|max_length[50]',
-		// 	'senha'=> 'required|max_length[60]', 
-		// ];
-		// $usuario = new UsuarioModel();
-		// if ($this->validate($rules)){
-		// 	$data = array(
-		// 		'nome' => $this->request->getVar('nome'),
-				
-		// 		'username' => $this->request->getVar('username'),
-
-		// 		'senha' =>$this->request->getVar('senha')
-
-		// 	);	
-		// 	$usuario->insereUsuario($data);
-
-		// // return redirect()->to(base_url('/'));
-		// }
-		// else{
-		// 	// return redirect()->to(base_url('/'));	
-		// }
-		
 	}
 
     public function deletaUsuario($username=null){
@@ -79,4 +54,44 @@ class Usuario extends BaseController
 			return redirect()->to(base_url('home'));
 		}
 	}
+
+
+	public function loginUser(){
+		
+		$rules = [
+			'username' => 'required',
+			'senha'=> 'required', 
+		];
+
+		$usuario = new UsuarioModel();
+		if ($this->validate($rules)){
+			$data = array(
+				'username' => $this->request->getVar('username'),
+
+				'senha' => $this->request->getVar('senha'),
+
+				'nome' => '',
+
+				'logged_in' => FALSE
+
+			);
+			
+			if(!($userRow = $usuario->checkUserPassword($data))){
+				$this->session->setFlashdata('loginFail',' Alguma coisa ta errada' );
+				return redirect()->to('/');
+			}else{
+				$data['logged_in'] = TRUE;
+				$data['username'] = $userRow['username'];
+				$data['name'] = $userRow['name'];
+				$this->session->set($data);
+				return redirect()->to(base_url('/transacao/cadastro'));
+			}
+		}
+		else {
+			return view('/');
+			
+		}
+
+	
+	} 
 }
