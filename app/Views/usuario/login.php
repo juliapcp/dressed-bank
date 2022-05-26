@@ -27,11 +27,11 @@
                             <h3 class="text-center text-info">Login</h3>
                             <div class="form-group">
                                 <label for="username" class="text-info">Username:</label><br>
-                                <input type="text" name="username" id="username" class="form-control">
+                                <input type="text" name="username" id="username" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Senha</label><br>
-                                <input type="password" name="senha" id="password" class="form-control">
+                                <input type="password" name="senha" id="password" class="form-control" required>
                             </div>
                             <div id="register-link" class="text-right">
                                 <a href="<?php echo base_url()?>/usuario/cadastrar" class="text-info">Cadastre-se aqui</a>
