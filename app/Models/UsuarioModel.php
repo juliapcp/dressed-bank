@@ -36,6 +36,6 @@ class UsuarioModel extends Model
         }
     }
     public function checkUserPassword($data){
-        return $this->where(['id' => $data['id'], 'senha' =>$data['senha']])->first();
+        return $this->where(['username' => $data['username'], 'senha' =>$data['senha']])->first();
     }
 }

@@ -36,8 +36,9 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Usuario::loginUsuario');
 $routes->get('/usuario/cadastrar', 'Usuario::mostraCadastroUsuario');
 $routes->post('/usuario/cadastrar', 'Usuario::insertUsuario');
-$routes->add('/usuario/login','Usuario::loginUser');
+$routes->post('/usuario/login','Usuario::loginUser');
 
+$routes->get('/dashboard', 'Home::index');
 $routes->get('/transacao/cadastro', 'Transacao::mostraCadastro');
 
 /*

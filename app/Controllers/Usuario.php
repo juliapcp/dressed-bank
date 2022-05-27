@@ -70,13 +70,11 @@ class Usuario extends BaseController
 
 				'senha' => $this->request->getVar('senha'),
 
-				'nome' => '',
-
 				'logged_in' => FALSE
 
 			);
 					if(!($userRow = $usuario->checkUserPassword($data))){
-						$this->session->setFlashdata('loginFail',' Incorrect username or password.' );
+						$this->session->setFlashdata('Falha no login','Username ou senha incorretos.' );
 						return redirect()->to(base_url('/'));
 					}
 					else{
@@ -84,54 +82,11 @@ class Usuario extends BaseController
 						$data['username'] = $userRow['username'];
 						$data['nome'] = $userRow['nome'];
 						$this->session->set($data);
-							return redirect()->to(base_url('/transacao/cadastro'));
+							return redirect()->to(base_url('/dashboard'));
 						}
-		
-					// return view('/');
 	
 	} 
 
 
-
-	// public function loginUser(){
-		
-	// 	$usuarios_model = new UsuarioModel();
-	// 	$auditoria_model = new AuditoriaModel();
-	// 	$date =  date('Y-m-d H:i:s');
-	// 	// if ($this->validate($rules)){
-	// 		$data = array(
-
-	// 			'username' => $this->request->getVar('username'),
-	// 			'senha' => $this->request->getVar('senha'),
-	// 			'logged_in' => FALSE
-
-	// 		);
-		
-	// 			$data3 = array(
-
-	// 			'dataLogin' => $date,
-	// 			'username' => $this->request->getVar('username'),
-
-	// 		);
-	// 		if(!($userRow = $usuarios_model->checkUserPassword($data))){
-	// 			$this->session->setFlashdata('loginFail',' Incorrect username or password.' );
-	// 			return redirect()->to(base_url('/'));
-	// 		}
-	// 		else{
-	// 			$data['logged_in'] = TRUE;
-	// 			$data['username'] = $userRow['username'];
-	// 			$data['nome'] = $userRow['nome'];
-	// 			$auditoria_model->insertlogin($data3);
-
-	// 			$this->session->set($data);
-	// 				return redirect()->to(base_url('/transacao/cadastro'));
-	// 			}
-
-	// 		// return view('/');
-			
-		
-
-	
-	// }
 }
 }
