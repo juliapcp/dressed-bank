@@ -74,7 +74,8 @@ class Usuario extends BaseController
 
 			);
 					if(!($userRow = $usuario->checkUserPassword($data))){
-						$this->session->setFlashdata('Falha no login','Username ou senha incorretos.' );
+						$this->session->setFlashdata('loginFail','Username ou senha incorretos.' );
+						echo "bunda";
 						return redirect()->to(base_url('/'));
 					}
 					else{

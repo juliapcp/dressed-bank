@@ -4,7 +4,9 @@
 <head>
     <!-- Design by foolishdeveloper.com -->
     <title>Dressed Bank</title>
-
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
@@ -156,6 +158,10 @@
 </head>
 
 <body>
+
+
+
+
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>
@@ -170,6 +176,28 @@
         <input type="password" placeholder="Senha" name="senha" required id="senha">
 
         <button type="submit">Login</button>
+        <br>
+        <?php
+    if (session()->get('messageRegisterOk')){
+        ?>
+        <div class="alert alert-info" role="alert">
+        
+                <?php echo "<strong>". session()->getFlashdata('messageRegisterOk')."</strong>"; ?>
+        </div>
+    <?php
+    }
+    ?>
+
+    <?php
+    if (session()->get('loginFail')){
+        ?>
+        <div role="alert">
+        
+                <?php echo "<strong>". session()->getFlashdata('loginFail')."</strong>"; ?>
+        </div>
+    <?php
+    }
+    ?> 
 
     </form>
 </body>

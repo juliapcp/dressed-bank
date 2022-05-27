@@ -62,7 +62,7 @@
     }
 
     form {
-      height: 570px;
+      height: 590px;
       width: 400px;
       background-color: rgba(255, 255, 255, 0.13);
       position: absolute;
@@ -171,6 +171,9 @@
 
     <label for="senha">Senha</label>
     <input type="password" placeholder="Senha" name="senha" required id="senha">
+    <br>
+    
+    <a href="<?php echo base_url() ?>/" class="text-info">Fazer login</a>
 
     <button type="submit">Cadastrar</button>
 
