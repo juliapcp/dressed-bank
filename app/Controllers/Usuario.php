@@ -75,23 +75,19 @@ class Usuario extends BaseController
 				'logged_in' => FALSE
 
 			);
-			
-			if(!($userRow = $usuario->checkUserPassword($data))){
-				$this->session->setFlashdata('loginFail',' Alguma coisa ta errada' );
-				return redirect()->to('/');
-			}else{
-				$data['logged_in'] = TRUE;
-				$data['username'] = $userRow['username'];
-				$data['name'] = $userRow['name'];
-				$this->session->set($data);
-				return redirect()->to(base_url('/transacao/cadastro'));
-			}
-		}
-		else {
-			return view('/');
-			
-		}
-
+					if(!($userRow = $usuario->checkUserPassword($data))){
+						$this->session->setFlashdata('loginFail',' Incorrect username or password.' );
+						return redirect()->to(base_url('/'));
+					}
+					else{
+						$data['logged_in'] = TRUE;
+						$data['username'] = $userRow['username'];
+						$data['nome'] = $userRow['nome'];
+						$this->session->set($data);
+							return redirect()->to(base_url('/transacao/cadastro'));
+						}
+		
+					// return view('/');
 	
 	} 
 
@@ -137,4 +133,5 @@ class Usuario extends BaseController
 
 	
 	// }
+}
 }
