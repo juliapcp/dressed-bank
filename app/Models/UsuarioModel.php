@@ -8,34 +8,34 @@ class UsuarioModel extends Model
 {
 
     protected $table = 'usuario';
-    protected $primaryKey = 'username';
+    protected $primaryKey = 'id';
     protected $allowedFields = ['username', 'nome', 'senha'];
 
-    public function getDados($username = null)
+    public function getDados($id = null)
     {
-        if ($username == null) {
+        if ($id == null) {
             return $this->findAll();
         }
-        return $this->asArray()->where(['username' => $username])->first();
+        return $this->asArray()->where(['id' => $id])->first();
     }
 
     public function insereUsuario($data)
     {
-        $this->insert($data);
+        return $this->insert($data);
     }
 
-    public function alteraUsuario($username, $data)
+    public function alteraUsuario($id, $data)
     {
-        return $this->update($username, $data);
+        return $this->update($id, $data);
     }
 
-    public function deletaUsuario($username = null)
+    public function deletaUsuario($id = null)
     {
-        if ($username != null) {
-            $this->delete($username);
+        if ($id != null) {
+            $this->delete($id);
         }
     }
     public function checkUserPassword($data){
-        return $this->where(['username' => $data['username'], 'senha' =>$data['senha']])->first();
+        return $this->where(['id' => $data['id'], 'senha' =>$data['senha']])->first();
     }
 }
