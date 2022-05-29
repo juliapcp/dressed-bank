@@ -20,7 +20,8 @@ class Usuario extends BaseController
 
 
     public function insertUsuario(){
-
+		$custo = '08';
+		$salt = 'Cf1f11ePArKlBJomM0F6aJ';
 
 		$rules = [
 			'nome' => 'required|max_length[100]',
@@ -28,13 +29,15 @@ class Usuario extends BaseController
 			'senha' => 'required'
 		];
 
+				
+
 		$usuario = new UsuarioModel();
 
 		if ($this->validate($rules)) {
 			$data = array(
 				'nome' => $this->request->getVar('nome'),
 				'username' => $this->request->getVar('username'),
-				'senha' => $this->request->getVar('senha')
+				'senha' => crypt($this->request->getVar('senha'),'$2a$' . $custo . '$' . $salt . '$')
 			);
 			$usuario->insereUsuario($data);
 			return redirect()->to(base_url('/'));
@@ -63,6 +66,8 @@ class Usuario extends BaseController
 			'senha'=> 'required', 
 		];
 
+
+
 		$usuario = new UsuarioModel();
 		if ($this->validate($rules)){
 			$data = array(
@@ -75,7 +80,6 @@ class Usuario extends BaseController
 			);
 					if(!($userRow = $usuario->checkUserPassword($data))){
 						$this->session->setFlashdata('loginFail','Username ou senha incorretos.' );
-						echo "bunda";
 						return redirect()->to(base_url('/'));
 					}
 					else{
@@ -83,7 +87,7 @@ class Usuario extends BaseController
 						$data['username'] = $userRow['username'];
 						$data['nome'] = $userRow['nome'];
 						$this->session->set($data);
-							return redirect()->to(base_url('/dashboard'));
+						return redirect()->to(base_url('/dashboard'));
 						}
 	
 	} 
