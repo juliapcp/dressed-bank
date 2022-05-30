@@ -35,6 +35,7 @@ class UsuarioModel extends Model
         $modelConta = new ContaModel();
         $modelConta->insereConta($dataContaPoupanca);
         $modelConta->insereConta($dataContaCorrente);
+        return $idUsuario;
     }
 
     public function alteraUsuario($id, $data)

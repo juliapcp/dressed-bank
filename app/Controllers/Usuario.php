@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Controllers;
+
+use App\Models\ContaModel;
+use App\Models\TransacaoModel;
 use App\Models\UsuarioModel;
 
 class Usuario extends BaseController
@@ -17,6 +20,43 @@ class Usuario extends BaseController
         return view('/usuario/login');
     }
 
+	public function mostraDepositoInicial($idUsuario = null, $validation = null )
+	{
+		if ($idUsuario != null) {
+			$data['validation'] = $validation;
+			$data['idUsuario'] = $idUsuario;
+			echo view('/usuario/depositoInicial', $data);
+		} else {
+			return redirect()->to(base_url('/'));
+		}
+	}
+
+	public function depositoInicial($idUsuario = null)
+	{
+		if ($idUsuario != null) {
+			$rules = [
+				'valor' => 'required'
+			];
+			if ($this->validate($rules)) {
+				$contaModel = new ContaModel();
+				$transacaoModel = new TransacaoModel();
+				$data = array(
+					'tipo' => 'C',
+					'valor' => $this->request->getVar('valor'),
+					'conta' => ($contaModel->getContaUsuario($idUsuario, 'C')[0]['idconta']),
+					'metodopagamento' => 'dinheiro',
+					'datatransacao' => date("Y-m-d"),
+					'descricao' => 'Depósito Inicial'
+				);
+				$transacaoModel->insereTransacao($data);
+				return redirect()->to(base_url('/dashboard'));
+			} else {
+				$this->mostraDepositoInicial($idUsuario, $this->validator);
+			}
+		} else {
+			return redirect()->to(base_url('/'));
+		}
+	}
 
 
     public function insertUsuario(){
@@ -39,22 +79,25 @@ class Usuario extends BaseController
 				'username' => $this->request->getVar('username'),
 				'senha' => crypt($this->request->getVar('senha'),'$2a$' . $custo . '$' . $salt . '$')
 			);
-			$usuario->insereUsuario($data);
-			return redirect()->to(base_url('/'));
+			$idUsuario = $usuario->insereUsuario($data);
+			return redirect()->to(base_url('/usuario/depositoInicial/'.$idUsuario));
+		} else {
+			$data['validation'] = $this->validator;
+			$this->mostraCadastroUsuario();
 		}
 	}
 
     public function deletaUsuario($username=null){
 		if ($username==null){
-			return redirect()->to('home');
+			return redirect()->to('/');
 		}
 		$username = new UsuarioModel();
 		$result = $username->getDados($username);
 		if ($result !=NULL){
 			$username->deletaUsuario($result['username']);		
-			return redirect()->to(base_url('home'));	
+			return redirect()->to(base_url('/'));	
 		}else{
-			return redirect()->to(base_url('home'));
+			return redirect()->to(base_url('/'));
 		}
 	}
 
@@ -90,7 +133,10 @@ class Usuario extends BaseController
 						return redirect()->to(base_url('/dashboard'));
 						}
 	
-	} 
+	} else {
+			$data['validation'] = $this->validator;
+			$this->loginUsuario();
+		}
 
 
 }

@@ -36,4 +36,13 @@ class ContaModel extends Model
             $this->delete($numero);
         }
     }
+
+    public function getContaUsuario($idUsuario, $tipoConta){
+        $db      = \Config\Database::connect();
+        $builder = $db->table('conta');
+        $builder->select('id as idconta');
+        $builder->where(['idusuario' => $idUsuario], ['tipo' => $tipoConta]);
+        $builder->limit(1);
+        return $builder->get()->getResult('array');
+    }
 }

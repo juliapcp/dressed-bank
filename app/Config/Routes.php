@@ -36,6 +36,8 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Usuario::loginUsuario');
 $routes->get('/usuario/cadastrar', 'Usuario::mostraCadastroUsuario');
 $routes->post('/usuario/cadastrar', 'Usuario::insertUsuario');
+$routes->get('/usuario/depositoInicial/(:idUsuario)', 'Usuario::mostraDepositoInicial');
+$routes->post('/usuario/depositoInicial/(:idUsuario)', 'Usuario::depositoInicial');
 $routes->post('/usuario/login','Usuario::loginUser');
 
 $routes->get('/dashboard', 'Home::index');
