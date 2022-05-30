@@ -21,7 +21,20 @@ class UsuarioModel extends Model
 
     public function insereUsuario($data)
     {
-        return $this->insert($data);
+        $idUsuario = $this->insert($data);
+        $dataContaPoupanca = array(
+            'tipo' => 'P',
+            'idusuario' => $idUsuario,
+            'numero' => mt_rand(1000000000,9999999999)
+        );
+        $dataContaCorrente = array(
+            'tipo' => 'C',
+            'idusuario' => $idUsuario,
+            'numero' => mt_rand(1000000000,9999999999)
+        );
+        $modelConta = new ContaModel();
+        $modelConta->insereConta($dataContaPoupanca);
+        $modelConta->insereConta($dataContaCorrente);
     }
 
     public function alteraUsuario($id, $data)

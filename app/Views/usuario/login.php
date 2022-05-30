@@ -175,29 +175,31 @@
         <label for="senha">Senha</label>
         <input type="password" placeholder="Senha" name="senha" required id="senha">
 
+        <a href="<?php echo base_url() ?>/usuario/cadastrar" class="text-info">Cadastrar-se</a>
+
         <button type="submit">Login</button>
         <br>
         <?php
-    if (session()->get('messageRegisterOk')){
+        if (session()->get('messageRegisterOk')) {
         ?>
-        <div class="alert alert-info" role="alert">
-        
-                <?php echo "<strong>". session()->getFlashdata('messageRegisterOk')."</strong>"; ?>
-        </div>
-    <?php
-    }
-    ?>
+            <div class="alert alert-info" role="alert">
 
-    <?php
-    if (session()->get('loginFail')){
+                <?php echo "<strong>" . session()->getFlashdata('messageRegisterOk') . "</strong>"; ?>
+            </div>
+        <?php
+        }
         ?>
-        <div role="alert">
-        
-                <?php echo "<strong>". session()->getFlashdata('loginFail')."</strong>"; ?>
-        </div>
-    <?php
-    }
-    ?> 
+
+        <?php
+        if (session()->get('loginFail')) {
+        ?>
+            <div role="alert">
+
+                <?php echo "<strong>" . session()->getFlashdata('loginFail') . "</strong>"; ?>
+            </div>
+        <?php
+        }
+        ?>
 
     </form>
 </body>
