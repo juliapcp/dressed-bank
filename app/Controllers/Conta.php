@@ -18,7 +18,7 @@ class Conta extends BaseController
 			return redirect()->to(base_url('/'));
 		}
 	}
-
+//n sei se ta certo 
 public function resgate($idUsuario = null)
 	{
 		if ($idUsuario != null) {
@@ -27,7 +27,6 @@ public function resgate($idUsuario = null)
 			];
 			if ($this->validate($rules)) {
 				$contaModel = new ContaModel();
-				$transacaoModel = new TransacaoModel();
 				$data = array(
 					'tipo' => 'C',
 					'valor' => $this->request->getVar('valor'),
@@ -39,12 +38,13 @@ public function resgate($idUsuario = null)
                 $data2 = array(
 					'tipo' => 'P',
 					'valor' => '-'.$this->request->getVar('valor'),
-					'conta' => ($contaModel->getContaUsuario($idUsuario, 'C')[0]['idconta']),
+					'conta' => ($contaModel->getContaUsuario($idUsuario, 'P')[0]['idconta']),
 					'metodopagamento' => 'dinheiro',
 					'datatransacao' => date("Y-m-d"),
 					'descricao' => 'Resgate do valor' 
 				);
-				$transacaoModel->insereResgate($data);
+				$contaModel->insereResgate($data);
+				$contaModel->insereResgate2($data2);
 				return redirect()->to(base_url('/dashboard'));
 			} else {
 				$this->mostraResgate($idUsuario, $this->validator);
