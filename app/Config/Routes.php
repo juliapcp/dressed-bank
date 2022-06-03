@@ -37,6 +37,7 @@ $routes->get('/', 'Usuario::loginUsuario');
 $routes->get('/usuario/cadastrar', 'Usuario::mostraCadastroUsuario');
 $routes->post('/usuario/cadastrar', 'Usuario::insertUsuario');
 $routes->get('/usuario/depositoInicial/(:idUsuario)', 'Usuario::mostraDepositoInicial');
+$routes->get('/usuario/logout', 'Usuario::logoutUser');
 $routes->post('/usuario/depositoInicial/(:idUsuario)', 'Usuario::depositoInicial');
 $routes->post('/usuario/login','Usuario::loginUser');
 

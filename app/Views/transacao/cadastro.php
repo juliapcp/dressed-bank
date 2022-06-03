@@ -13,7 +13,7 @@
                 <tr>
                     <td><label for="data">Data: </label></td>
                     <td><label for="valor">Valor (R$): </label></td>
-                    <td><label for="valor">Valor (R$): </label></td>
+                    <td><label for="valor">Método de Pagamento: </label></td>
                 </tr>
                 <tr>
                     <td>
@@ -23,14 +23,22 @@
                         <input required type="number" step=0.01 class="w3-white w3-border w3-round-large" name="valor">
                     </td>
                     <td>
-                        <input required type="number" step=0.01 class="w3-white w3-border w3-round-large" name="valor">
+                        <select class="w3-white w3-border w3-round-large" name="metodopagamento">
+                            <option value="pix">Pix</option>
+                            <option value="boleto">Boleto</option>
+                            <option value="dinheiro">Dinheiro</option>
+                            <option value="débito">Débito</option>
+                        </select>
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3"><label for="descricao">Descrição: </label></td>
+                    <td colspan="3">
+                        <label for="descricao">Descrição: </label>
+                    </td>
                 </tr>
                 <tr>
-                    <td colspan="3"><textarea style="width: 100%;" class=" w3-white w3-border w3-round-large" name="descricao"></textarea>
+                    <td colspan="3">
+                        <textarea style="width: 100%;" class=" w3-white w3-border w3-round-large" name="descricao"></textarea>
                     </td>
                 </tr>
                 <tr>

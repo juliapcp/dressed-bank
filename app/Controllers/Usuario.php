@@ -8,19 +8,19 @@ use App\Models\UsuarioModel;
 
 class Usuario extends BaseController
 {
-    public function mostraCadastroUsuario()
-    {
+	public function mostraCadastroUsuario()
+	{
 		$usuarioModel = new UsuarioModel();
-		$data['usuarios'] = $usuarioModel-> getDados();
-        return view('/usuario/cadastrar', $data);
-    }
+		$data['usuarios'] = $usuarioModel->getDados();
+		return view('/usuario/cadastrar', $data);
+	}
 
-    public function loginUsuario()
-    {
-        return view('/usuario/login');
-    }
+	public function loginUsuario()
+	{
+		return view('/usuario/login');
+	}
 
-	public function mostraDepositoInicial($idUsuario = null, $validation = null )
+	public function mostraDepositoInicial($idUsuario = null, $validation = null)
 	{
 		if ($idUsuario != null) {
 			$data['validation'] = $validation;
@@ -49,7 +49,7 @@ class Usuario extends BaseController
 					'descricao' => 'Depósito Inicial'
 				);
 				$transacaoModel->insereTransacao($data);
-				return redirect()->to(base_url('/dashboard'));
+				return redirect()->to(base_url('/'));
 			} else {
 				$this->mostraDepositoInicial($idUsuario, $this->validator);
 			}
@@ -59,7 +59,8 @@ class Usuario extends BaseController
 	}
 
 
-    public function insertUsuario(){
+	public function insertUsuario()
+	{
 		$custo = '08';
 		$salt = 'Cf1f11ePArKlBJomM0F6aJ';
 
@@ -69,7 +70,7 @@ class Usuario extends BaseController
 			'senha' => 'required'
 		];
 
-				
+
 
 		$usuario = new UsuarioModel();
 
@@ -77,42 +78,44 @@ class Usuario extends BaseController
 			$data = array(
 				'nome' => $this->request->getVar('nome'),
 				'username' => $this->request->getVar('username'),
-				'senha' => crypt($this->request->getVar('senha'),'$2a$' . $custo . '$' . $salt . '$')
+				'senha' => crypt($this->request->getVar('senha'), '$2a$' . $custo . '$' . $salt . '$')
 			);
 			$idUsuario = $usuario->insereUsuario($data);
-			return redirect()->to(base_url('/usuario/depositoInicial/'.$idUsuario));
+			return redirect()->to(base_url('/usuario/depositoInicial/' . $idUsuario));
 		} else {
 			$data['validation'] = $this->validator;
 			$this->mostraCadastroUsuario();
 		}
 	}
 
-    public function deletaUsuario($username=null){
-		if ($username==null){
+	public function deletaUsuario($username = null)
+	{
+		if ($username == null) {
 			return redirect()->to('/');
 		}
 		$username = new UsuarioModel();
 		$result = $username->getDados($username);
-		if ($result !=NULL){
-			$username->deletaUsuario($result['username']);		
-			return redirect()->to(base_url('/'));	
-		}else{
+		if ($result != NULL) {
+			$username->deletaUsuario($result['username']);
+			return redirect()->to(base_url('/'));
+		} else {
 			return redirect()->to(base_url('/'));
 		}
 	}
 
 
-	public function loginUser(){
-		
+	public function loginUser()
+	{
+
 		$rules = [
 			'username' => 'required',
-			'senha'=> 'required', 
+			'senha' => 'required',
 		];
 
 
 
 		$usuario = new UsuarioModel();
-		if ($this->validate($rules)){
+		if ($this->validate($rules)) {
 			$data = array(
 				'username' => $this->request->getVar('username'),
 
@@ -121,23 +124,31 @@ class Usuario extends BaseController
 				'logged_in' => FALSE
 
 			);
-					if(!($userRow = $usuario->checkUserPassword($data))){
-						$this->session->setFlashdata('loginFail','Username ou senha incorretos.' );
-						return redirect()->to(base_url('/'));
-					}
-					else{
-						$data['logged_in'] = TRUE;
-						$data['username'] = $userRow['username'];
-						$data['nome'] = $userRow['nome'];
-						$this->session->set($data);
-						return redirect()->to(base_url('/dashboard'));
-						}
-	
-	} else {
+			if (!($userRow = $usuario->checkUserPassword($data))) {
+				$this->session->setFlashdata('loginFail', 'Username ou senha incorretos.');
+				return redirect()->to(base_url('/'));
+			} else {
+				$data['logged_in'] = TRUE;
+				$data['username'] = $userRow['username'];
+				$data['nome'] = $userRow['nome'];
+				$data['idUsuario'] = $userRow['id'];
+				$data['senha'] = "";
+				$this->session->set($data);
+				return redirect()->to(base_url('/dashboard'));
+			}
+		} else {
 			$data['validation'] = $this->validator;
 			$this->loginUsuario();
 		}
+	}
 
-
-}
+	public function logoutUser()
+	{
+		$data['logged_in'] = FALSE;
+		$data['username'] = "";
+		$data['nome'] = "";
+		$data['idUsuario'] = "";
+		$this->session->set($data);
+		return redirect()->to(base_url('/'));
+	}
 }

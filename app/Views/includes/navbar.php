@@ -11,7 +11,7 @@
             <button href="#" onclick="abrirMeuPerfil()" class="open-button w3-bar-item w3-button" id="abrirPopup">Visualizar
                 perfil</button>
             <button href="#" onclick="fecharMeuPerfil()" class="open-button w3-bar-item w3-button" id="fecharPopup" style="visibility: hidden; position: absolute;">Fechar perfil</button>
-            <a href="/" class="w3-bar-item w3-button"><i class="fa fa-sign-out"></i>Sair</a>
+            <a href="/usuario/logout" class="w3-bar-item w3-button"><i class="fa fa-sign-out"></i>Sair</a>
         </div>
     </div>
     <div class="form-popup" id="meuPerfil" style="display: none; border-left: 12px solid #029913;">
@@ -62,10 +62,8 @@
         let div = document.getElementById('minhaPoupanca');
         if (div.style.display !== 'none') {
             div.style.display = 'none';
-        }
-        else {
+        } else {
             div.style.display = 'block';
         }
     }
-    
 </script>
