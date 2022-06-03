@@ -108,9 +108,6 @@ class Usuario extends BaseController
 			'username' => 'required',
 			'senha'=> 'required', 
 		];
-
-
-
 		$usuario = new UsuarioModel();
 		if ($this->validate($rules)){
 			$data = array(
@@ -140,4 +137,5 @@ class Usuario extends BaseController
 
 
 }
+
 }
