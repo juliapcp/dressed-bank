@@ -8,7 +8,7 @@
 
     <div class="w3-container">
         <h3 id="titulo">Novo pagamento</h3>
-        <form action="/transacoes/cadastro" method="post">
+        <form action="/transacao/pagamento" method="post">
             <table>
                 <tr>
                     <td><label for="data">Data: </label></td>
@@ -17,7 +17,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <input required style="width:100%" type="date" class="w3-white w3-border w3-round-large" name="data">
+                        <input required type="date" class="w3-white w3-border w3-round-large" name="datatransacao">
                     </td>
                     <td>
                         <input required type="number" step=0.01 class="w3-white w3-border w3-round-large" name="valor">

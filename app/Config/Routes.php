@@ -42,7 +42,7 @@ $routes->post('/usuario/depositoInicial/(:idUsuario)', 'Usuario::depositoInicial
 $routes->post('/usuario/login','Usuario::loginUser');
 
 $routes->get('/dashboard', 'Home::index');
-$routes->get('/transacao/cadastro', 'Transacao::mostraCadastro');
+$routes->get('/transacao/pagamento', 'Transacao::mostraPagamento');
 $routes->get('/conta/resgate/(:idUsuario)', 'Conta::mostraResgate');
 
 /*

@@ -4,8 +4,8 @@ namespace App\Controllers;
 
 class Transacao extends BaseController
 {
-    public function mostraCadastro()
+    public function mostraPagamento()
     {
-        return view('transacao/cadastro');
+        return view('transacao/pagamento');
     }
 }
