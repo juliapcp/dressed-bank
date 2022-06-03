@@ -43,6 +43,7 @@ $routes->post('/usuario/login','Usuario::loginUser');
 
 $routes->get('/dashboard', 'Home::index');
 $routes->get('/transacao/pagamento', 'Transacao::mostraPagamento');
+$routes->post('/transacao/pagamento', 'Transacao::cadastraPagamento');
 $routes->get('/conta/resgate/(:idUsuario)', 'Conta::mostraResgate');
 
 /*
