@@ -10,6 +10,8 @@ class Home extends BaseController
     {
         $transacao = new TransacaoModel();
         $data["transacoes"] = $transacao->getDados();
+        $data["saldo"] = $transacao->getSaldo();
+
         return view('index', $data);
     }
 }

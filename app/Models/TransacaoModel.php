@@ -35,4 +35,12 @@ class TransacaoModel extends Model
             $this->delete($id);
         }
     }
+
+    
+    public function getSaldo($idUsuario = null){
+        $this->select('sum(transacao.valor) as total');
+        $this->join('conta','conta.id = transacao.conta', 'left');
+
+        return $this->asArray()->where(['conta.idusuario' => $idUsuario])->first();
+    }
 }
