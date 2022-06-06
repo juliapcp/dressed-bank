@@ -23,6 +23,7 @@ public function resgate($idUsuario = null)
 	{
 		if ($idUsuario != null) {
 			$rules = [
+				
 				'valor' => 'required'
 			];
 			if ($this->validate($rules)) {
@@ -31,20 +32,21 @@ public function resgate($idUsuario = null)
 					'tipo' => 'C',
 					'valor' => $this->request->getVar('valor'),
 					'conta' => ($contaModel->getContaUsuario($idUsuario, 'C')[0]['idconta']),
-					'metodopagamento' => 'dinheiro',
+					'metodopagamento' => 'resgate',
 					'datatransacao' => date("Y-m-d"),
-					'descricao' => 'Resgate do valor' 
+					'descricao' => 'Valor resgatado' 
 				);
                 $data2 = array(
 					'tipo' => 'P',
 					'valor' => '-'.$this->request->getVar('valor'),
 					'conta' => ($contaModel->getContaUsuario($idUsuario, 'P')[0]['idconta']),
-					'metodopagamento' => 'dinheiro',
+					'metodopagamento' => 'resgate',
 					'datatransacao' => date("Y-m-d"),
-					'descricao' => 'Resgate do valor' 
+					'descricao' => 'Valor do resgate' 
 				);
 				$contaModel->insereResgate($data);
 				$contaModel->insereResgate2($data2);
+				var_dump($data2);
 				return redirect()->to(base_url('/dashboard'));
 			} else {
 				$this->mostraResgate($idUsuario, $this->validator);
