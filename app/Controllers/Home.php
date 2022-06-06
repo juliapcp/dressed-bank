@@ -10,7 +10,8 @@ class Home extends BaseController
     {
         $transacao = new TransacaoModel();
         $data["transacoes"] = $transacao->getDados();
-        $data["saldo"] = $transacao->getSaldo();
+        $data["saldoP"] = $transacao->getSaldoPositivo();
+        $data["saldoN"] = $transacao->getSaldoNegativo();
 
         return view('index', $data);
     }

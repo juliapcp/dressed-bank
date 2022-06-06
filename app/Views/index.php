@@ -35,7 +35,7 @@
             <div class="w3-container w3-blue w3-padding-16">
                 <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3><?php echo '$'.$saldo['total'] ?> </h3>
+                    <h3><?php echo '$'.$saldoP['total']-$saldoN['total'] ?> </h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>Saldo</h4>
