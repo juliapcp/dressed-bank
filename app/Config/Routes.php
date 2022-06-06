@@ -46,6 +46,7 @@ $routes->get('/transacao/pagamento', 'Transacao::mostraPagamento');
 $routes->post('/transacao/pagamento', 'Transacao::cadastraPagamento');
 $routes->get('/conta/resgate/(:idUsuario)', 'Conta::mostraResgate');
 $routes->post('/conta/resgate/(:idUsuario)', 'Conta::resgate');
+$routes->post('/conta/extrato/(:idUsuario)', 'Conta::extrato');
 
 /*
  * --------------------------------------------------------------------

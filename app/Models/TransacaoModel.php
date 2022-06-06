@@ -19,6 +19,12 @@ class TransacaoModel extends Model
         return $this->asArray()->where(['id' => $id])->first();
     }
 
+    public function extrato($idUsuario) {
+        $this->join('conta','conta.id = transacao.conta', 'left');
+
+        return $this->asArray()->where(['idusuario' => $idUsuario])->first();
+    }
+
     public function insereTransacao($data)
     {
         return $this->insert($data);
@@ -52,4 +58,5 @@ class TransacaoModel extends Model
 
         return $this->asArray()->where(['idusuario' => '18'])->first();
     }
+
 }

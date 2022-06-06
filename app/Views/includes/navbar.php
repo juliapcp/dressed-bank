@@ -24,7 +24,7 @@
     <div class="w3-bar-block">
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Fechar Menu</a>
         <a href="/dashboard" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Dashboard</a>
-        <a href="" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-text-o fa-fw"></i>  Extrato</a>
+        <a href="/conta/extrato/<?php echo $_SESSION['idUsuario'] ?>" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-text-o fa-fw"></i>  Extrato</a>
         <div class="w3-col s8 w3-bar">
             <button href="#" onclick="abrirPoupanca()" class="open-button w3-bar-item w3-button" id="abrirPonpup"><i class="fa fa-bank fa-fw"></i>  Poupança</button>
         </div>

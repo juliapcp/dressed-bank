@@ -18,8 +18,8 @@ class Conta extends BaseController
 			return redirect()->to(base_url('/'));
 		}
 	}
-//n sei se ta certo 
-public function resgate($idUsuario = null)
+	//n sei se ta certo 
+	public function resgate($idUsuario = null)
 	{
 		if ($idUsuario != null) {
 			$rules = [
@@ -53,4 +53,13 @@ public function resgate($idUsuario = null)
 			return redirect()->to(base_url('/'));
 		}
 	}
+	
+	public function extrato($idUsuario) {
+		$extrato = new TransacaoModel();
+        $data["extratos"] = $extrato->extrato($idUsuario);
+		
+		return view('/usuario/extrato', $data);
+	}
+	
+	
 }
