@@ -12,9 +12,8 @@ class Home extends BaseController
         $transacao = new TransacaoModel();
         $conta = new ContaModel();
         $data["transacoes"] = $transacao->getDadosContaCorrente(($conta->getContaUsuario($_SESSION['idUsuario'], 'C'))[0]['idconta']);
-        $data["saldoP"] = $transacao->getSaldoPositivo($_SESSION['idUsuario']);
-        $data["saldoN"] = $transacao->getSaldoNegativo($_SESSION['idUsuario']);
-
+        $data["saldoP"] = $transacao->getSaldoPositivo($_SESSION['idUsuario'], 'C');
+        $data["saldoN"] = $transacao->getSaldoNegativo($_SESSION['idUsuario'], 'C');
         return view('index', $data);
     }
 }
