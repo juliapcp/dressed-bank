@@ -70,26 +70,18 @@ class TransacaoModel extends Model
         $this->select('coalesce(sum(transacao.valor),0) as total');
         $this->join('conta','conta.id = transacao.conta', 'left');
         $this->where('transacao.tipo','C');
-        $this->where('conta.tipo','P');
+        $this->where('conta.tipo','C');
 
-<<<<<<< HEAD
-        return $this->asArray()->where(['idusuario' => '17'])->first();
-=======
         return $this->asArray()->where(['idusuario' => $idUsuario])->first();
->>>>>>> b9d0b30536c1e2b668565fb41d5b66654622277d
     }
 
     public function getSaldoNegativo($idUsuario = null){
         $this->select('coalesce(sum(transacao.valor),0) as total');
         $this->join('conta','conta.id = transacao.conta', 'left');
         $this->where('transacao.tipo','D');
-        $this->where('conta.tipo','P');
+        $this->where('conta.tipo','C');
 
-<<<<<<< HEAD
-        return $this->asArray()->where(['idusuario' => '17'])->first();
-=======
         return $this->asArray()->where(['idusuario' => $idUsuario])->first();
->>>>>>> b9d0b30536c1e2b668565fb41d5b66654622277d
     }
 
 }
