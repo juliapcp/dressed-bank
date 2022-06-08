@@ -8,6 +8,8 @@ use App\Models\UsuarioModel;
 
 class Conta extends BaseController
 {
+<<<<<<< HEAD
+=======
     public function mostraResgate($idUsuario = null, $validation = null )
 	{
 		if ($idUsuario != null) {
@@ -63,6 +65,7 @@ class Conta extends BaseController
 		
 		return view('/conta/extrato', $data);
 	}
+>>>>>>> b9d0b30536c1e2b668565fb41d5b66654622277d
 	
 	
 }
