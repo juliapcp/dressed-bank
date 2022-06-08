@@ -53,7 +53,8 @@ class ContaModel extends Model
         $db      = \Config\Database::connect();
         $builder = $db->table('conta');
         $builder->select('id as idconta');
-        $builder->where(['idusuario' => $idUsuario], ['tipo' => $tipoConta]);
+        $builder->where(['idusuario' => $idUsuario]);
+        $builder->where(['tipo' => $tipoConta]);
         $builder->limit(1);
         return $builder->get()->getResult('array');
     }
