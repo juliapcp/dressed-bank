@@ -7,7 +7,8 @@
 
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
     <header class="w3-container" style="padding-top:22px">
-        <h4 id="titulo">Dashboard</h4>
+        <h4 id="titulo">Resumo da conta corrente</h4>
+
     </header>
 
     <div class="w3-row-padding w3-margin-bottom">
@@ -15,7 +16,7 @@
             <div class="w3-container w3-teal w3-padding-16">
                 <div class="w3-left"><i class="fa fa-line-chart w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3>--</h3>
+                    <h3><?php echo 'R$' . $saldoP['total'] ?></h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>Receita</h4>
@@ -25,7 +26,7 @@
             <div class="w3-container w3-red w3-padding-16">
                 <div class="w3-left"><i class="fa fa-level-down w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3>--</h3>
+                    <h3><?php echo 'R$' . $saldoN['total'] ?></h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>Despesa</h4>
@@ -35,7 +36,7 @@
             <div class="w3-container w3-blue w3-padding-16">
                 <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
                 <div class="w3-right">
-                    <h3><?php echo '$'.$saldoP['total']-$saldoN['total'] ?> </h3>
+                    <h3><?php echo 'R$' . $saldoP['total'] - $saldoN['total'] ?> </h3>
                 </div>
                 <div class="w3-clear"></div>
                 <h4>Saldo</h4>
@@ -49,41 +50,27 @@
     <div class="w3-container">
         <h4 id="titulo">Transações</h4>
         <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-        <?php
+            <?php
             if ($transacoes != null) {
-            foreach ($transacoes as $transacao) {
-            echo "<tr>
+                foreach ($transacoes as $transacao) {
+                    echo "<tr>
                 <td></td>
-                <td>" . $transacao['tipo'] . "</td>
+                <td>" . $transacao['tipoTransacao'] . "</td>
+                <td>" . $transacao['datatransacao'] . "</td>
                 <td>" . $transacao['metodopagamento'] . "</td>
                 <td>" . $transacao['valor'] . "</td>
             </tr>";
-            } 
-        } else {
+                }
+            } else {
                 echo "<p>Ops, você ainda não registrou nenhuma transação, registre para começar a controlar suas finanças</p>";
             }
-        ?> 
+            ?>
         </table>
     </div>
     <hr>
 
 
 </div>
-<script>
-    let campo = document.getElementById('campo');
-    let valor = document.querySelector("#valor");
-    campo.addEventListener("change", function() {
-        console.log("entrou");
-        if (campo.value == 'data') {
-            valor.type = 'date'
-        } else {
-            valor.type = "text"
-        }
-    });
-    valor.addEventListener("input", function() {
-        valor.value = valor.value.toUpperCase();
-    });
-</script>
 </body>
 
 </html>

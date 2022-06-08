@@ -56,11 +56,12 @@ class Conta extends BaseController
 		}
 	}
 	
-	public function extrato($idUsuario) {
+	public function extrato() {
 		$extrato = new TransacaoModel();
-        $data["extratos"] = $extrato->extrato($idUsuario);
+		$conta = new ContaModel();
+        $data["extratos"] = $extrato->extrato(($conta->getContaUsuario($_SESSION['idUsuario'], 'C'))[0]['idconta']);
 		
-		return view('/usuario/extrato', $data);
+		return view('/conta/extrato', $data);
 	}
 	
 	

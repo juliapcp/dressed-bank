@@ -19,10 +19,23 @@ class TransacaoModel extends Model
         return $this->asArray()->where(['id' => $id])->first();
     }
 
-    public function extrato($idUsuario) {
-        $this->join('conta','conta.id = transacao.conta', 'left');
+    public function getDadosContaCorrente($idConta){
 
-        return $this->asArray()->where(['idusuario' => $idUsuario])->first();
+        $db      = \Config\Database::connect();
+        $builder = $db->table('transacao');
+        $builder->select('transacao.tipo as tipoTransacao, metodopagamento, valor, datatransacao');
+        $builder->join('conta', 'conta.id = transacao.conta', 'left');
+        $builder->where('conta.id', $idConta);
+        return $builder->get()->getResult('array');
+    }
+
+    public function extrato($idConta) {
+        $db      = \Config\Database::connect();
+        $builder = $db->table('transacao');
+        $builder->select('*');
+        $builder->join('conta', 'conta.id = transacao.conta', 'left');
+        $builder->where('conta.id', $idConta);
+        return $builder->get()->getResult('array');
     }
 
     public function insereTransacao($data)
@@ -44,19 +57,19 @@ class TransacaoModel extends Model
 
     
     public function getSaldoPositivo($idUsuario = null){
-        $this->select('sum(transacao.valor) as total');
+        $this->select('coalesce(sum(transacao.valor),0) as total');
         $this->join('conta','conta.id = transacao.conta', 'left');
         $this->where('transacao.tipo','C');
 
-        return $this->asArray()->where(['idusuario' => '18'])->first();
+        return $this->asArray()->where(['idusuario' => $idUsuario])->first();
     }
 
     public function getSaldoNegativo($idUsuario = null){
-        $this->select('sum(transacao.valor) as total');
+        $this->select('coalesce(sum(transacao.valor),0) as total');
         $this->join('conta','conta.id = transacao.conta', 'left');
         $this->where('transacao.tipo','D');
 
-        return $this->asArray()->where(['idusuario' => '18'])->first();
+        return $this->asArray()->where(['idusuario' => $idUsuario])->first();
     }
 
 }

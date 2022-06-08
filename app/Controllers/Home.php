@@ -3,15 +3,17 @@
 namespace App\Controllers;
 
 use App\Models\TransacaoModel;
+use App\Models\ContaModel;
 
 class Home extends BaseController
 {
     public function index()
     {
         $transacao = new TransacaoModel();
-        $data["transacoes"] = $transacao->getDados();
-        $data["saldoP"] = $transacao->getSaldoPositivo();
-        $data["saldoN"] = $transacao->getSaldoNegativo();
+        $conta = new ContaModel();
+        $data["transacoes"] = $transacao->getDadosContaCorrente(($conta->getContaUsuario($_SESSION['idUsuario'], 'C'))[0]['idconta']);
+        $data["saldoP"] = $transacao->getSaldoPositivo($_SESSION['idUsuario']);
+        $data["saldoN"] = $transacao->getSaldoNegativo($_SESSION['idUsuario']);
 
         return view('index', $data);
     }
