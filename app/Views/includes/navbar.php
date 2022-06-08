@@ -31,7 +31,7 @@
         <div class="form-popup" id="minhaPoupanca" style="display: none;">
             <b class="w3-button w3-padding" style=" margin-left: 20px;"><i class="fa fa-bank fa-fw"></i>  Saldo -----</b><br>
             <b style=" margin-left: 20px;"><a href="/usuario/aplicacao/<?php echo $_SESSION['idUsuario'] ?>" class="w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Aplicação</a></b><br>
-            <b style=" margin-left: 20px;"><a href="/conta/resgate/<?php echo $_SESSION['idUsuario'] ?>" class="w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Resgate</a></a></b>
+            <b style=" margin-left: 20px;"><a href="/transacao/resgate/<?php echo $_SESSION['idUsuario'] ?>" class="w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Resgate</a></a></b>
         </div>
         <a href="/transacao/pagamento" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i>  Pagamento</a>
         <a href="/transacao/transferencia" class="w3-bar-item w3-button w3-padding"><i class="fa fa-exchange fa-fw"></i>  Transferência</a>

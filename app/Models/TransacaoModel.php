@@ -30,6 +30,16 @@ class TransacaoModel extends Model
         return $this->insert($data);
     }
 
+    public function insereResgate($data)
+    {
+        return $this->insert($data);
+    }
+
+    public function insereResgate2($data2)
+    {
+        return $this->insert($data2);
+    }
+
     public function alteraTransacao($id, $data)
     {
         return $this->update($id, $data);
@@ -47,16 +57,18 @@ class TransacaoModel extends Model
         $this->select('sum(transacao.valor) as total');
         $this->join('conta','conta.id = transacao.conta', 'left');
         $this->where('transacao.tipo','C');
+        $this->where('conta.tipo','P');
 
-        return $this->asArray()->where(['idusuario' => '18'])->first();
+        return $this->asArray()->where(['idusuario' => '17'])->first();
     }
 
     public function getSaldoNegativo($idUsuario = null){
         $this->select('sum(transacao.valor) as total');
         $this->join('conta','conta.id = transacao.conta', 'left');
         $this->where('transacao.tipo','D');
+        $this->where('conta.tipo','P');
 
-        return $this->asArray()->where(['idusuario' => '18'])->first();
+        return $this->asArray()->where(['idusuario' => '17'])->first();
     }
 
 }

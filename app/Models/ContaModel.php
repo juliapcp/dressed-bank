@@ -26,15 +26,7 @@ class ContaModel extends Model
     }
 
     //N SEI SE TA CERTO
-    public function insereResgate($data)
-    {
-        return $this->insert($data);
-    }
-
-    public function insereResgate2($data2)
-    {
-        return $this->insert($data2);
-    }
+    
     //
 
     public function alteraConta($numero, $data)

@@ -158,7 +158,7 @@
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form action="/conta/resgate/<?php echo $idUsuario ?>" method="post">
+    <form action="/transacao/resgate/<?php echo $idUsuario ?>" method="post">
         <h3>Resgate</h3>
 
         <label for="senha">Valor do Resgate</label>
