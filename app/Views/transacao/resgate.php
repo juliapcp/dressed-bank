@@ -158,8 +158,10 @@
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-    <form action="/transacao/resgate/<?php echo $idUsuario ?>" method="post">
+    <form action="/transacao/resgate" method="post">
         <h3>Resgate</h3>
+
+        <h3><?php echo 'R$' . $saldo?> </h3>
 
         <label for="senha">Valor do Resgate</label>
         <input type="number" step=0.01 placeholder="Valor" name="valor" required id="valor">
@@ -171,7 +173,28 @@
         </div>
         <?php } ?>
 
+            
+        <?php
+        if (session()->get('messageRegisterOk')) {
+        ?>
+            <div class="alert alert-info" role="alert">
 
+                <?php echo "<strong>" . session()->getFlashdata('messageRegisterOk') . "</strong>"; ?>
+            </div>
+        <?php
+        }
+        ?>
+
+        <?php
+        if (session()->get('loginFail')) {
+        ?>
+            <div role="alert">
+
+                <?php echo "<strong>" . session()->getFlashdata('loginFail') . "</strong>"; ?>
+            </div>
+        <?php
+        }
+        ?>
     </form>
 </body>
 
