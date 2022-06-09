@@ -160,10 +160,12 @@
     </div>
     <form action="/transacao/resgate" method="post">
         <h3>Resgate</h3>
-
+        <br>
+        <br>
+        <h5>Saldo da conta poupança<h5>
         <h3><?php echo 'R$' . $saldo?> </h3>
 
-        <label for="senha">Valor do Resgate</label>
+        <label for="valor">Valor do Resgate</label>
         <input type="number" step=0.01 placeholder="Valor" name="valor" required id="valor">
 
         <button type="submit">Continuar</button>
