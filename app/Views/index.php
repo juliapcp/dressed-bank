@@ -42,13 +42,21 @@
     <div class="w3-container">
         <h4 id="titulo">Transações</h4>
         <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Data</th>
+                    <th>Método de Pagamento</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
             <?php
             if ($transacoes != null) {
                 foreach ($transacoes as $transacao) {
-                    echo "<tr><td><i class=\"fa fa-". ($transacao['tipoTransacao'] == 'C' ? "plus w3-text-green" : "minus w3-text-red") ."\"></i></td>
-                <td>" . $transacao['datatransacao'] . "</td>
+                    echo "<tr><td><i class=\"fa fa-" . ($transacao['tipoTransacao'] == 'C' ? "plus w3-text-green" : "minus w3-text-red") . "\"></i></td>
+                <td>". date("d/m/Y", strtotime($transacao['datatransacao'])) . "</td>
                 <td>" . $transacao['metodopagamento'] . "</td>
-                <td>" .'R$'.$transacao['valor'] . "</td>
+                <td>" . 'R$' . $transacao['valor'] . "</td>
             </tr>";
                 }
             } else {
@@ -60,4 +68,5 @@
     <hr>
 </div>
 </body>
+
 </html>

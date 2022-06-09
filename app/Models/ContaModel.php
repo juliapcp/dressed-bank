@@ -25,10 +25,6 @@ class ContaModel extends Model
 
     }
 
-    //N SEI SE TA CERTO
-    
-    //
-
     public function alteraConta($numero, $data)
     {
         return $this->update($numero, $data);

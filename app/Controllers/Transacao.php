@@ -149,4 +149,49 @@ class Transacao extends BaseController
             $transacaoModel->insereTransacao($data);
             return redirect()->to(base_url('/dashboard'));
         }    }
+    public function mostraTransferencia()
+    {
+        return view('transacao/transferencia');
+    }
+    public function cadastraTransferencia()
+    {
+        $rules = [
+            'valor' => 'required',
+            'datatransacao' => 'required'
+        ];
+
+        $contaModel = new ContaModel();
+		$conta = $contaModel->getContaUsuario($_SESSION['idUsuario'], "C")[0]["idconta"];
+        $transacaoModel = new TransacaoModel();
+
+		$contaDestino = $contaModel->getDados($this->request->getVar('contadestino'));
+		if($contaDestino != null){
+        if ($this->validate($rules)) {
+            $data = array(
+                'metodopagamento' => "transferencia",
+                'valor' => $this->request->getVar('valor'),
+                'descricao' => $this->request->getVar('descricao') . "| Conta de destino: ".$contaDestino["id"],
+                'tipo' => "D",
+                'conta' => $conta,
+                'datatransacao' => $this->request->getVar('datatransacao')
+            );
+            $transacaoModel->insereTransacao($data);
+
+            $data2 = array(
+                'metodopagamento' => "transferencia",
+                'valor' => $this->request->getVar('valor'),
+                'descricao' => $this->request->getVar('descricao') . "| Conta de origem: $conta",
+                'tipo' => "C",
+                'conta' => $contaDestino["id"],
+                'datatransacao' => $this->request->getVar('datatransacao')
+            );
+			$transacaoModel = new TransacaoModel();
+            $transacaoModel->insereTransacao($data2);
+            return redirect()->to(base_url('/dashboard'));
+        }
+		    } else {
+				$this->session->setFlashdata('mensagem', 'A conta destino não existe, tente novamente.');
+				return redirect()->to(base_url('/transacao/transferencia'));
+			}
+		    }
 }

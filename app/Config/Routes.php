@@ -43,7 +43,9 @@ $routes->post('/usuario/login','Usuario::loginUser');
 
 $routes->get('/dashboard', 'Home::index');
 $routes->get('/transacao/pagamento', 'Transacao::mostraPagamento');
+$routes->get('/transacao/transferencia', 'Transacao::mostraTransferencia');
 $routes->post('/transacao/pagamento', 'Transacao::cadastraPagamento');
+$routes->post('/transacao/transferencia', 'Transacao::cadastraTransferencia');
 $routes->get('/transacao/resgate/(:idUsuario)', 'Transacao::mostraResgate');
 $routes->post('/transacao/resgate', 'Transacao::resgate');
 $routes->get('/transacao/aplicacao/(:idUsuario)', 'Transacao::mostraAplicacao');
