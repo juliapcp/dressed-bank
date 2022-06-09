@@ -21,6 +21,59 @@ class Transacao extends BaseController
 			return redirect()->to(base_url('/'));
 		}
 	}
+
+	public function mostraAplicacao($idUsuario = null, $validation = null )
+	{
+		if ($idUsuario != null) {
+			$transacaoModel = new TransacaoModel();
+			$data['validation'] = $validation;
+			$data['idUsuario'] = $idUsuario;
+			$data["saldo"] = $transacaoModel->getSaldo($_SESSION['idUsuario'], 'C');
+			echo view('/transacao/aplicacao', $data);
+		} else {
+			return redirect()->to(base_url('/'));
+		}
+	}
+
+	public function aplicacao()
+	{
+			$rules = [
+				
+				'valor' => 'required'
+			];
+			if ($this->validate($rules)) {
+                $transacaoModel = new TransacaoModel();
+                $contaModel = new ContaModel();
+				$data = array(
+					'tipo' => 'D',
+					'valor' => $this->request->getVar('valor'),
+					'conta' => ($contaModel->getContaUsuario($_SESSION['idUsuario'], 'C')[0]['idconta']),
+					'metodopagamento' => 'aplicação',
+					'datatransacao' => date("Y-m-d"),
+					'descricao' => 'Valor Aplicado' 
+				);
+                $data2 = array(
+					'tipo' => 'C',
+					'valor' => $this->request->getVar('valor'),
+					'conta' => ($contaModel->getContaUsuario($_SESSION['idUsuario'], 'P')[0]['idconta']),
+					'metodopagamento' => 'aplicação',
+					'datatransacao' => date("Y-m-d"),
+					'descricao' => 'Valor da aplicação' 
+				);
+				
+				if (($transacaoModel->getSaldo($_SESSION['idUsuario'], 'C') < $this->request->getVar('valor'))||( $this->request->getVar('valor') <= 0)) {
+					$this->session->setFlashdata('loginFail', 'SALDO MERDA.');
+					return redirect()->to(base_url('transacao/aplicacao'));
+				} else {
+				$transacaoModel->insereResgate($data);
+				$transacaoModel->insereResgate2($data2);
+				return redirect()->to(base_url('/dashboard'));
+				}
+			} else {
+				$this->mostraResgate($_SESSION['idUsuario'], $this->validator);
+			}
+	}
+
 	//n sei se ta certo 
 	public function resgate()
 	{

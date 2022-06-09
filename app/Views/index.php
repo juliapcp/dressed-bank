@@ -58,7 +58,7 @@
                 <td>" . $transacao['tipoTransacao'] . "</td>
                 <td>" . $transacao['datatransacao'] . "</td>
                 <td>" . $transacao['metodopagamento'] . "</td>
-                <td>" . $transacao['valor'] . "</td>
+                <td>" .'R$'.$transacao['valor'] . "</td>
             </tr>";
                 }
             } else {
