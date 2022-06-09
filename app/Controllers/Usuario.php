@@ -112,6 +112,7 @@ class Usuario extends BaseController
 			'senha' => 'required',
 		];
 		$usuario = new UsuarioModel();
+		$tarnsacao = new TransacaoModel();
 		if ($this->validate($rules)) {
 			$data = array(
 				'username' => $this->request->getVar('username'),
@@ -132,10 +133,13 @@ class Usuario extends BaseController
 				$data['senha'] = "";
 				$data['time'] = $usuario->getDateTime();
 				$this->session->set($data);
+				$tarnsacao->GeraJurosPoupanca($_SESSION['idUsuario']);
 				return redirect()->to(base_url('/dashboard'));
+
 			}
 		} else {
 			$data['validation'] = $this->validator;
+			
 			$this->loginUsuario();
 		}
 	}
@@ -150,5 +154,31 @@ class Usuario extends BaseController
 		$data['time'] = $usuario->getDateTime();
 		$this->session->set($data);
 		return redirect()->to(base_url('/'));
+	}
+
+
+	public function juros()
+	{
+			$rules = [
+				
+				'valor' => 'required'
+			];
+			if ($this->validate($rules)) {
+                $transacaoModel = new TransacaoModel();
+                $contaModel = new ContaModel();
+                $data2 = array(
+					'tipo' => 'C',
+					'valor' => $this->request->getVar('valor'),
+					'conta' => ($contaModel->getContaUsuario($_SESSION['idUsuario'], 'P')[0]['idconta']),
+					'metodopagamento' => 'rendimento',
+					'datatransacao' => date("Y-m-d"),
+					'descricao' => 'Rendimento da poupanca' 
+				);
+				$transacaoModel->insereResgate2($data2);
+				return redirect()->to(base_url('/dashboard'));
+				
+			} else {
+				$this->mostraResgate($_SESSION['idUsuario'], $this->validator);
+			}
 	}
 }

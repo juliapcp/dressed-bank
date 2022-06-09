@@ -60,4 +60,10 @@ class UsuarioModel extends Model
 		$salt = 'Cf1f11ePArKlBJomM0F6aJ';
         return $this->where(['username' => $data['username'], 'senha' =>crypt($data['senha'],'$2a$' . $custo . '$' . $salt . '$')])->first();
     }
+    public function DifMesesUltimoLogin($idUsuario){
+        $db      = \Config\Database::connect();
+        $builder = $db->table('conta');
+        $builder->select('select DATE_PART("month", AGE(now(), (select MAX (DATAEVENTO) from logevento where idusuario=22 and tipoevento="LOGIN"))) AS mesesultimologin');
+        
+    }
 }

@@ -105,8 +105,8 @@ class Transacao extends BaseController
 					$this->session->setFlashdata('loginFail', 'Saldo insuficiente para efetuar o resgate!!');
 					return redirect()->to(base_url('/transacao/resgate'));
 				} else {
-				$transacaoModel->insereResgate($data);
-				$transacaoModel->insereResgate2($data2);
+				$transacaoModel->insereTransacao($data);
+				$transacaoModel->insereTransacao($data2);
 				return redirect()->to(base_url('/dashboard'));
 				}
 			} else {
@@ -149,4 +149,10 @@ class Transacao extends BaseController
             $transacaoModel->insereTransacao($data);
             return redirect()->to(base_url('/dashboard'));
         }    }
+
+
+		
+
+
+
 }
