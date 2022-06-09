@@ -149,10 +149,68 @@ class Transacao extends BaseController
             $transacaoModel->insereTransacao($data);
             return redirect()->to(base_url('/dashboard'));
         }    }
+<<<<<<< HEAD
 
 
 		
 
 
 
+=======
+    public function mostraTransferencia()
+    {
+        return view('transacao/transferencia');
+    }
+    public function cadastraTransferencia()
+    {
+        $rules = [
+            'valor' => 'required',
+            'datatransacao' => 'required'
+        ];
+
+        $contaModel = new ContaModel();
+		$conta = $contaModel->getContaUsuario($_SESSION['idUsuario'], "C")[0]["idconta"];
+		$contaPoupanca = $contaModel->getContaUsuario($_SESSION['idUsuario'], "P")[0]["idconta"];
+        $transacaoModel = new TransacaoModel();
+		$contaDestino = $contaModel->getDados($this->request->getVar('contadestino'));
+		if($contaDestino != null){
+			if($contaDestino["id"] != $conta && $contaDestino["id"] != $contaPoupanca){
+        if ($this->validate($rules)) {
+			if($transacaoModel->getSaldo($_SESSION['idUsuario'], 'C') >= $this->request->getVar('valor') ){
+            $data = array(
+                'metodopagamento' => "transferencia",
+                'valor' => $this->request->getVar('valor'),
+                'descricao' => $this->request->getVar('descricao') . "| Conta de destino: ". $contaDestino["numero"],
+                'tipo' => "D",
+                'conta' => $conta,
+                'datatransacao' => $this->request->getVar('datatransacao')
+            );
+            $transacaoModel->insereTransacao($data);
+            $data2 = array(
+                'metodopagamento' => "transferencia",
+                'valor' => $this->request->getVar('valor'),
+                'descricao' => $this->request->getVar('descricao') . "| Conta de origem: ". $contaModel->getContaUsuario($_SESSION['idUsuario'], "P")[0]["numero"],
+                'tipo' => "C",
+                'conta' => $contaDestino["id"],
+                'datatransacao' => $this->request->getVar('datatransacao')
+            );
+			$transacaoModel = new TransacaoModel();
+            $transacaoModel->insereTransacao($data2);
+            return redirect()->to(base_url('/dashboard'));
+		} else {
+						$this->session->setFlashdata('mensagem', 'Você não possui saldo suficiente para fazer essa transferência.');
+						return redirect()->to(base_url('/transacao/transferencia'));
+		}
+        }
+		
+	} else {
+				$this->session->setFlashdata('mensagem', 'A conta destino não pode ser sua conta.');
+				return redirect()->to(base_url('/transacao/transferencia'));
+	}
+		    } else {
+				$this->session->setFlashdata('mensagem', 'A conta destino não existe, tente novamente.');
+				return redirect()->to(base_url('/transacao/transferencia'));
+			}
+		    }
+>>>>>>> 494520c1ca8bc52961ef1a5b346008d47d382426
 }

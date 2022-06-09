@@ -25,10 +25,6 @@ class ContaModel extends Model
 
     }
 
-    //N SEI SE TA CERTO
-    
-    //
-
     public function alteraConta($numero, $data)
     {
         return $this->update($numero, $data);
@@ -44,7 +40,7 @@ class ContaModel extends Model
     public function getContaUsuario($idUsuario, $tipoConta){
         $db      = \Config\Database::connect();
         $builder = $db->table('conta');
-        $builder->select('id as idconta');
+        $builder->select('id as idconta, numero');
         $builder->where(['idusuario' => $idUsuario]);
         $builder->where(['tipo' => $tipoConta]);
         $builder->limit(1);

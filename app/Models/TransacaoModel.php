@@ -23,7 +23,7 @@ class TransacaoModel extends Model
 
         $db      = \Config\Database::connect();
         $builder = $db->table('transacao');
-        $builder->select('transacao.tipo as tipoTransacao, metodopagamento, valor, datatransacao');
+        $builder->select('transacao.tipo as tipoTransacao, metodopagamento, valor, datatransacao, descricao');
         $builder->join('conta', 'conta.id = transacao.conta', 'left');
         $builder->where('conta.id', $idConta);
         return $builder->get()->getResult('array');
