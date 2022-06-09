@@ -102,7 +102,7 @@ class Transacao extends BaseController
 				);
 				
 				if (($transacaoModel->getSaldo($_SESSION['idUsuario'], 'P') < $this->request->getVar('valor'))||( $this->request->getVar('valor') <= 0)) {
-					$this->session->setFlashdata('loginFail', 'SALDO MERDA.');
+					$this->session->setFlashdata('loginFail', 'Saldo insuficiente para efetuar o resgate!!');
 					return redirect()->to(base_url('/transacao/resgate'));
 				} else {
 				$transacaoModel->insereResgate($data);
