@@ -7,7 +7,7 @@
             <i class="fa fa-user fa-fw w3-xxxlarge"></i>
         </div>
         <div class="w3-col s8 w3-bar">
-            <span>Bem vindo(a), <strong><?php echo $_SESSION['nome'] ?></strong></span><br>
+            <span>Bem vindo(a), <strong><?php echo $_SESSION['nome']?></strong></span><br>
             <button href="#" onclick="abrirMeuPerfil()" class="open-button w3-bar-item w3-button" id="abrirPopup">Visualizar
                 perfil</button>
             <button href="#" onclick="fecharMeuPerfil()" class="open-button w3-bar-item w3-button" id="fecharPopup" style="visibility: hidden; position: absolute;">Fechar perfil</button>
@@ -30,7 +30,7 @@
         </div>
         <div class="form-popup" id="minhaPoupanca" style="display: none;">
             <b class="w3-button w3-padding" style=" margin-left: 20px;"><i class="fa fa-bank fa-fw"></i>  Saldo -----</b><br>
-            <b style=" margin-left: 20px;"><a href="/usuario/aplicacao/<?php echo $_SESSION['idUsuario'] ?>" class="w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Aplicação</a></b><br>
+            <b style=" margin-left: 20px;"><a href="/transacao/mostraAplicacao/<?php echo $_SESSION['idUsuario'] ?>" class="w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Aplicação</a></b><br>
             <b style=" margin-left: 20px;"><a href="/transacao/resgate/<?php echo $_SESSION['idUsuario'] ?>" class="w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Resgate</a></a></b>
         </div>
         <a href="/transacao/pagamento" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i>  Pagamento</a>

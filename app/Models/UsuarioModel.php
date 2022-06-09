@@ -19,6 +19,12 @@ class UsuarioModel extends Model
         return $this->asArray()->where(['id' => $id])->first();
     }
 
+    public function getDateTime()
+    {
+        date_default_timezone_set('America/Sao_Paulo');
+        return date('d-m-Y H:i:s');
+    }
+
     public function insereUsuario($data)
     {
         $idUsuario = $this->insert($data);

@@ -12,9 +12,8 @@
             echo 
             "<tr>
                 <td></td>
-                <td>" . $extrato['tipo'] . "</td>
                 <td>" . $extrato['metodopagamento'] . "</td>
-                <td>" . $extrato['valor'] . "</td>
+                <td>" .'R$'.$extrato['valor'] . "</td>
                 <td>" . $extrato['datatransacao'] . "</td>
                 <td>" . $extrato['descricao'] . "</td>
             </tr>";

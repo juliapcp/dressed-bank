@@ -130,6 +130,7 @@ class Usuario extends BaseController
 				$data['nome'] = $userRow['nome'];
 				$data['idUsuario'] = $userRow['id'];
 				$data['senha'] = "";
+				$data['time'] = $usuario->getDateTime();
 				$this->session->set($data);
 				return redirect()->to(base_url('/dashboard'));
 			}
@@ -145,6 +146,8 @@ class Usuario extends BaseController
 		$data['username'] = "";
 		$data['nome'] = "";
 		$data['idUsuario'] = "";
+		$usuario = new UsuarioModel();
+		$data['time'] = $usuario->getDateTime();
 		$this->session->set($data);
 		return redirect()->to(base_url('/'));
 	}
