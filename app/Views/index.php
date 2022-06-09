@@ -48,6 +48,7 @@
                     <th>Data</th>
                     <th>Método de Pagamento</th>
                     <th>Valor</th>
+                    <th>Descrição</th>
                 </tr>
             </thead>
             <?php
@@ -57,6 +58,7 @@
                 <td>". date("d/m/Y", strtotime($transacao['datatransacao'])) . "</td>
                 <td>" . $transacao['metodopagamento'] . "</td>
                 <td>" . 'R$' . $transacao['valor'] . "</td>
+                <td>" . $transacao['descricao'] . "</td>
             </tr>";
                 }
             } else {
