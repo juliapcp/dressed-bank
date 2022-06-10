@@ -51,6 +51,7 @@ $routes->post('/transacao/resgate', 'Transacao::resgate');
 $routes->get('/transacao/aplicacao/(:idUsuario)', 'Transacao::mostraAplicacao');
 $routes->post('/transacao/aplicacao', 'Transacao::aplicacao');
 $routes->post('/conta/extrato/(:idUsuario)', 'Conta::extrato');
+$routes->get('/conta/extratoPoupanca/(:idUsuario)', 'Conta::extratoPoupanca');
 
 /*
  * --------------------------------------------------------------------

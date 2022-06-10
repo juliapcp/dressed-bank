@@ -7,7 +7,7 @@
             <i class="fa fa-user fa-fw w3-xxxlarge"></i>
         </div>
         <div class="w3-col s8 w3-bar">
-            <span>Bem vindo(a), <strong><?php echo $_SESSION['nome']?></strong></span><br>
+            <span>Bem vindo(a), <strong><?php echo $_SESSION['nome'] ?></strong></span><br>
             <button href="#" onclick="abrirMeuPerfil()" class="open-button w3-bar-item w3-button" id="abrirPopup">Visualizar
                 perfil</button>
             <button href="#" onclick="fecharMeuPerfil()" class="open-button w3-bar-item w3-button" id="fecharPopup" style="visibility: hidden; position: absolute;">Fechar perfil</button>
@@ -28,7 +28,7 @@
     <div class="w3-bar-block">
         <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Fechar Menu</a>
         <a href="/dashboard" class="w3-bar-item w3-button w3-padding"><i class="fa fa-eye fa-fw"></i>  Dashboard</a>
-        <a href="/conta/extrato/<?php echo $_SESSION['idUsuario'] ?>" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-text-o fa-fw"></i>  Extrato</a>
+        <a href="/conta/extrato/<?php echo $_SESSION['idUsuario'] ?>" class="w3-bar-item w3-button w3-padding"><i class="fa fa-file-text-o fa-fw"></i>  Extrato da Conta Corrente</a>
         <div class="w3-col s8 w3-bar">
             <button href="#" onclick="abrirPoupanca()" class="open-button w3-bar-item w3-button" id="abrirPonpup"><i class="fa fa-bank fa-fw"></i>  Poupança</button>
         </div>
@@ -36,6 +36,7 @@
             <b class="w3-button w3-padding" style=" margin-left: 20px;"><i class="fa fa-bank fa-fw"></i><?php echo 'R$' . $saldoPoupança ?> </b><br>
             <b style=" margin-left: 20px;"><a href="/transacao/mostraAplicacao/<?php echo $_SESSION['idUsuario'] ?>" class="w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Aplicação</a></b><br>
             <b style=" margin-left: 20px;"><a href="/transacao/resgate/<?php echo $_SESSION['idUsuario'] ?>" class="w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Resgate</a></a></b>
+            <b style=" margin-left: 20px;"><a href="/conta/extratoPoupanca/<?php echo $_SESSION['idUsuario'] ?>" class="w3-bar-item w3-button w3-padding"> <i class="fa fa-file-text-o fa-fw"></i>  Extrato da Poupança</a></b>
         </div>
         <a href="/transacao/pagamento" class="w3-bar-item w3-button w3-padding"><i class="fa fa-money fa-fw"></i>  Pagamento</a>
         <a href="/transacao/transferencia" class="w3-bar-item w3-button w3-padding"><i class="fa fa-exchange fa-fw"></i>  Transferência</a>

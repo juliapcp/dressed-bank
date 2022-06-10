@@ -5,7 +5,7 @@
 
 <div class="w3-container">
     <header class="w3-container" style="padding-top:40px">
-        <h4 id="titulo">Extrato da Conta Corrente</h4>
+        <h4 id="titulo">Extrato da Poupança</h4>
     </header>
     <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
         <thead>
@@ -32,8 +32,7 @@
         }
         ?>
         <tr>
-            <td style="text-align:right;" colspan="5">Saldo da Conta: <b>R$: <?php echo $saldo ?>        </b></td>
+            <td style="text-align:right;" colspan="5">Saldo da Conta: <b>R$: <?php echo $saldo ?> </b></td>
         </tr>
-
     </table>
 </div>
