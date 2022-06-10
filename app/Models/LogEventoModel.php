@@ -7,12 +7,12 @@ use CodeIgniter\Model;
 class LogEventoModel extends Model
 {
 
-    protected $table = 'logEvento';
+    protected $table = 'logevento';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['dataEvento', 'tipoEvento', 'idusuario'];
+    protected $allowedFields = ['dataevento', 'tipoevento', 'idusuario'];
 
     public function insereLogEvento($data)
-    {
+    {   
         return $this->insert($data);
     }
 }

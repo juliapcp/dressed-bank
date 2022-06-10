@@ -32,7 +32,7 @@ class TransacaoModel extends Model
     public function extrato($idConta) {
         $db      = \Config\Database::connect();
         $builder = $db->table('transacao');
-        $builder->select('*');
+        $builder->select('transacao.tipo as tipoTransacao, metodopagamento, valor, datatransacao, descricao');
         $builder->join('conta', 'conta.id = transacao.conta', 'left');
         $builder->where('conta.id', $idConta);
         return $builder->get()->getResult('array');

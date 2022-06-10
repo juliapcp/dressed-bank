@@ -65,8 +65,8 @@ class Transacao extends BaseController
 					$this->session->setFlashdata('loginFail', 'SALDO MERDA.');
 					return redirect()->to(base_url('transacao/aplicacao'));
 				} else {
-				$transacaoModel->insereResgate($data);
-				$transacaoModel->insereResgate2($data2);
+				$transacaoModel->insereTransacao($data);
+				$transacaoModel->insereTransacao($data2);
 				return redirect()->to(base_url('/dashboard'));
 				}
 			} else {
@@ -149,14 +149,6 @@ class Transacao extends BaseController
             $transacaoModel->insereTransacao($data);
             return redirect()->to(base_url('/dashboard'));
         }    }
-<<<<<<< HEAD
-
-
-		
-
-
-
-=======
     public function mostraTransferencia()
     {
         return view('transacao/transferencia');
@@ -212,5 +204,4 @@ class Transacao extends BaseController
 				return redirect()->to(base_url('/transacao/transferencia'));
 			}
 		    }
->>>>>>> 494520c1ca8bc52961ef1a5b346008d47d382426
 }

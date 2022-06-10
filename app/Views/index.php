@@ -54,7 +54,7 @@
             <?php
             if ($transacoes != null) {
                 foreach ($transacoes as $transacao) {
-                    echo "<tr><td><i class=\"fa fa-" . ($transacao['tipoTransacao'] == 'C' ? "plus w3-text-green" : "minus w3-text-red") . "\"></i></td>
+                echo "<tr><td><i class=\"fa fa-" . ($transacao['tipoTransacao'] == 'C' ? "plus w3-text-green" : "minus w3-text-red") . "\"></i></td>
                 <td>". date("d/m/Y", strtotime($transacao['datatransacao'])) . "</td>
                 <td>" . $transacao['metodopagamento'] . "</td>
                 <td>" . 'R$' . $transacao['valor'] . "</td>

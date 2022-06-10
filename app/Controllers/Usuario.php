@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Models\ContaModel;
 use App\Models\TransacaoModel;
 use App\Models\UsuarioModel;
+use App\Models\LogEventoModel;
+
 
 class Usuario extends BaseController
 {
@@ -111,6 +113,7 @@ class Usuario extends BaseController
 			'username' => 'required',
 			'senha' => 'required',
 		];
+		$evento = new LogEventoModel();
 		$usuario = new UsuarioModel();
 		$tarnsacao = new TransacaoModel();
 		if ($this->validate($rules)) {
@@ -131,8 +134,15 @@ class Usuario extends BaseController
 				$data['nome'] = $userRow['nome'];
 				$data['idUsuario'] = $userRow['id'];
 				$data['senha'] = "";
-				$data['time'] = $usuario->getDateTime();
 				$this->session->set($data);
+        		$data = array(
+					'dataevento' => $usuario->getDateTime(),
+
+					'tipoevento' => 'LOGIN',
+					
+					'idusuario' => $_SESSION['idUsuario']
+				);
+				$evento->insereLogEvento($data);
 				$tarnsacao->GeraJurosPoupanca($_SESSION['idUsuario']);
 				return redirect()->to(base_url('/dashboard'));
 
@@ -146,6 +156,7 @@ class Usuario extends BaseController
 
 	public function logoutUser()
 	{
+		$userid = $_SESSION['idUsuario'];
 		$data['logged_in'] = FALSE;
 		$data['username'] = "";
 		$data['nome'] = "";
@@ -153,6 +164,15 @@ class Usuario extends BaseController
 		$usuario = new UsuarioModel();
 		$data['time'] = $usuario->getDateTime();
 		$this->session->set($data);
+		$evento = new LogEventoModel();
+		$data = array(
+					'dataevento' => $usuario->getDateTime(),
+
+					'tipoevento' => 'LOGOUT',
+					
+					'idusuario' => $userid
+				);
+		$evento->insereLogEvento($data);
 		return redirect()->to(base_url('/'));
 	}
 

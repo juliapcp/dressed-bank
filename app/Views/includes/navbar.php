@@ -29,7 +29,7 @@
             <button href="#" onclick="abrirPoupanca()" class="open-button w3-bar-item w3-button" id="abrirPonpup"><i class="fa fa-bank fa-fw"></i>  Poupança</button>
         </div>
         <div class="form-popup" id="minhaPoupanca" style="display: none;">
-            <b class="w3-button w3-padding" style=" margin-left: 20px;"><i class="fa fa-bank fa-fw"></i>  Saldo -----</b><br>
+            <b class="w3-button w3-padding" style=" margin-left: 20px;"><i class="fa fa-bank fa-fw"></i><?php echo 'R$' . $saldoPoupança ?> </b><br>
             <b style=" margin-left: 20px;"><a href="/transacao/mostraAplicacao/<?php echo $_SESSION['idUsuario'] ?>" class="w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Aplicação</a></b><br>
             <b style=" margin-left: 20px;"><a href="/transacao/resgate/<?php echo $_SESSION['idUsuario'] ?>" class="w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  Resgate</a></a></b>
         </div>
