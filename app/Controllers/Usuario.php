@@ -138,6 +138,7 @@ class Usuario extends BaseController
 				$data['numeroPoupanca'] = $contaModel->getContaUsuario($userRow['id'], "P")[0]["numero"];
 				$data['numeroCorrente'] = $contaModel->getContaUsuario($userRow['id'], "C")[0]["numero"];
 				$this->session->set($data);
+				$tarnsacao->GeraJurosPoupanca($_SESSION['idUsuario']);
         		$data = array(
 					'dataevento' => $usuario->getDateTime(),
 
@@ -146,9 +147,8 @@ class Usuario extends BaseController
 					'idusuario' => $_SESSION['idUsuario']
 				);
 				$evento->insereLogEvento($data);
-				$tarnsacao->GeraJurosPoupanca($_SESSION['idUsuario']);
 
-				return redirect()->to(base_url('/dashboard'));
+				// return redirect()->to(base_url('/dashboard'));
 
 			}
 		} else {
