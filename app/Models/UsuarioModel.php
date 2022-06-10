@@ -63,7 +63,7 @@ class UsuarioModel extends Model
     public function DifMesesUltimoLogin($idUsuario){
         $db      = \Config\Database::connect();
         $builder = $db->table('conta');
-        $builder->select("coalesce(DATE_PART('month', AGE((select MAX (DATAEVENTO) from logevento where idusuario=".$idUsuario." and tipoevento='LOGIN'), now())),0) AS mesesultimologin");
-        return $builder->get()->getResult('array')[0];
+        $builder->select("coalesce(DATE_PART('month', AGE(now(), (select MAX (DATAEVENTO) from logevento where idusuario=".$idUsuario." and tipoevento='LOGIN'))),0) AS mesesultimologin");
+        return $builder->get()->getResult('array')[0]["mesesultimologin"];
     }
 }

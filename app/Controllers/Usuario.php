@@ -148,7 +148,7 @@ class Usuario extends BaseController
 				);
 				$evento->insereLogEvento($data);
 
-				// return redirect()->to(base_url('/dashboard'));
+				return redirect()->to(base_url('/dashboard'));
 
 			}
 		} else {
