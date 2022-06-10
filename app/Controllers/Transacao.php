@@ -62,8 +62,8 @@ class Transacao extends BaseController
 			);
 
 			if (($transacaoModel->getSaldo($_SESSION['idUsuario'], 'C') < $this->request->getVar('valor')) || ($this->request->getVar('valor') <= 0)) {
-				$this->session->setFlashdata('loginFail', 'SALDO MERDA.');
-				return redirect()->to(base_url('transacao/aplicacao'));
+				$this->session->setFlashdata('loginFail', 'Saldo insuficiente para efetuar a aplicação.');
+				return redirect()->to(base_url('/transacao/aplicacao'));
 			} else {
 				$transacaoModel->insereTransacao($data);
 				$transacaoModel->insereTransacao($data2);
@@ -74,7 +74,6 @@ class Transacao extends BaseController
 		}
 	}
 
-	//n sei se ta certo 
 	public function resgate()
 	{
 		$rules = [

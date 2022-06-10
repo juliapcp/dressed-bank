@@ -161,40 +161,43 @@
     <form action="/transacao/aplicacao" method="post">
         <h3>Aplicação</h3>
 
-        <h3><?php echo 'R$' . $saldo?> </h3>
+        <h5>Saldo da conta corrente<h5>
 
-        <label for="senha">Valor da Aplicação</label>
-        <input type="number" step=0.01 placeholder="Valor" name="valor" required id="valor">
+                <h3><?php echo 'R$' . $saldo ?> </h3>
 
-        <button type="submit">Continuar</button>
-        <?php if($validation != null) { ?>
-        <div role="alert"> 
-           <?php // echo \Config\Services::validation()->listErrors() ?> 
-        </div>
-        <?php } ?>
+                <label for="senha">Valor da Aplicação</label>
+                <input type="number" step=0.01 placeholder="Valor" name="valor" required id="valor">
 
-            
-        <?php
-        if (session()->get('messageRegisterOk')) {
-        ?>
-            <div class="alert alert-info" role="alert">
+                <button type="submit">Continuar</button>
+                <?php if ($validation != null) { ?>
+                    <div role="alert">
+                        <?php // echo \Config\Services::validation()->listErrors() 
+                        ?>
+                    </div>
+                <?php } ?>
 
-                <?php echo "<strong>" . session()->getFlashdata('messageRegisterOk') . "</strong>"; ?>
-            </div>
-        <?php
-        }
-        ?>
 
-        <?php
-        if (session()->get('loginFail')) {
-        ?>
-            <div role="alert">
+                <?php
+                if (session()->get('messageRegisterOk')) {
+                ?>
+                    <div class="alert alert-info" role="alert">
 
-                <?php echo "<strong>" . session()->getFlashdata('loginFail') . "</strong>"; ?>
-            </div>
-        <?php
-        }
-        ?>
+                        <?php echo "<strong>" . session()->getFlashdata('messageRegisterOk') . "</strong>"; ?>
+                    </div>
+                <?php
+                }
+                ?>
+
+                <?php
+                if (session()->get('loginFail')) {
+                ?>
+                    <div role="alert">
+
+                        <?php echo "<strong>" . session()->getFlashdata('loginFail') . "</strong>"; ?>
+                    </div>
+                <?php
+                }
+                ?>
     </form>
 </body>
 

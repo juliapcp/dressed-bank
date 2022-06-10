@@ -21,8 +21,8 @@ class UsuarioModel extends Model
 
     public function getDateTime()
     {
-        date_default_timezone_set('America/Sao_Paulo');
-        return date('d-m-Y H:i:s');
+        date_default_timezone_set('GMT');
+        return date('Y-m-d H:i:s');
     }
 
     public function insereUsuario($data)
