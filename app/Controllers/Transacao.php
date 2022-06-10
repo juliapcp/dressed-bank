@@ -141,16 +141,21 @@ class Transacao extends BaseController
 		$transacaoModel = new TransacaoModel();
 
 		if ($this->validate($rules)) {
-			$data = array(
-				'metodopagamento' => $this->request->getVar('metodopagamento'),
-				'valor' => $this->request->getVar('valor'),
-				'descricao' => $this->request->getVar('descricao'),
-				'tipo' => "D",
-				'conta' => $conta,
-				'datatransacao' => $this->request->getVar('datatransacao')
-			);
-			$transacaoModel->insereTransacao($data);
-			return redirect()->to(base_url('/dashboard'));
+			if ($transacaoModel->getSaldo($_SESSION['idUsuario'], 'C') >= $this->request->getVar('valor')) {
+				$data = array(
+					'metodopagamento' => $this->request->getVar('metodopagamento'),
+					'valor' => $this->request->getVar('valor'),
+					'descricao' => $this->request->getVar('descricao'),
+					'tipo' => "D",
+					'conta' => $conta,
+					'datatransacao' => $this->request->getVar('datatransacao')
+				);
+				$transacaoModel->insereTransacao($data);
+				return redirect()->to(base_url('/dashboard'));
+			} else {
+				$this->session->setFlashdata('mensagem', 'Você não possui saldo suficiente para fazer esse pagamento.');
+				return redirect()->to(base_url('/transacao/pagamento'));
+			}
 		}
 	}
 	public function mostraTransferencia()

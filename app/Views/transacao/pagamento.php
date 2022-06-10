@@ -44,6 +44,16 @@
                     </tr>
                     <tr>
                         <td colspan="3">
+                            <?php
+                            if (session()->get('mensagem')) {
+                            ?>
+                                <div class="alert alert-info" role="alert">
+
+                                    <?php echo "<strong>" . session()->getFlashdata('mensagem') . "</strong>"; ?>
+                                </div>
+                            <?php
+                            }
+                            ?>
                             <button style=" margin-left: 74%;" type="submit" class="w3-button w3-green">Cadastrar</button>
                             <input type="button" value="Cancelar" onclick="location.href = '/'" class="w3-button w3-red">
                         </td>

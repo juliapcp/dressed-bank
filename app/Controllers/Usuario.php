@@ -114,6 +114,7 @@ class Usuario extends BaseController
 			'senha' => 'required',
 		];
 		$evento = new LogEventoModel();
+		$contaModel = new ContaModel();
 		$usuario = new UsuarioModel();
 		$tarnsacao = new TransacaoModel();
 		if ($this->validate($rules)) {
@@ -134,6 +135,8 @@ class Usuario extends BaseController
 				$data['nome'] = $userRow['nome'];
 				$data['idUsuario'] = $userRow['id'];
 				$data['senha'] = "";
+				$data['numeroPoupanca'] = $contaModel->getContaUsuario($userRow['id'], "P")[0]["numero"];
+				$data['numeroCorrente'] = $contaModel->getContaUsuario($userRow['id'], "C")[0]["numero"];
 				$this->session->set($data);
         		$data = array(
 					'dataevento' => $usuario->getDateTime(),
@@ -144,6 +147,7 @@ class Usuario extends BaseController
 				);
 				$evento->insereLogEvento($data);
 				$tarnsacao->GeraJurosPoupanca($_SESSION['idUsuario']);
+
 				return redirect()->to(base_url('/dashboard'));
 
 			}
@@ -176,29 +180,4 @@ class Usuario extends BaseController
 		return redirect()->to(base_url('/'));
 	}
 
-
-	public function juros()
-	{
-			$rules = [
-				
-				'valor' => 'required'
-			];
-			if ($this->validate($rules)) {
-                $transacaoModel = new TransacaoModel();
-                $contaModel = new ContaModel();
-                $data2 = array(
-					'tipo' => 'C',
-					'valor' => $this->request->getVar('valor'),
-					'conta' => ($contaModel->getContaUsuario($_SESSION['idUsuario'], 'P')[0]['idconta']),
-					'metodopagamento' => 'rendimento',
-					'datatransacao' => date("Y-m-d"),
-					'descricao' => 'Rendimento da poupanca' 
-				);
-				$transacaoModel->insereResgate2($data2);
-				return redirect()->to(base_url('/dashboard'));
-				
-			} else {
-				$this->mostraResgate($_SESSION['idUsuario'], $this->validator);
-			}
-	}
 }

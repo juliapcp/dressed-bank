@@ -19,6 +19,10 @@
         <p style=" margin-left: 20px;"><?php echo $_SESSION['nome'] ?></p>
         <b style=" margin-left: 20px;">Username:</b>
         <p style=" margin-left: 20px;"><?php echo $_SESSION['username'] ?></p>
+        <b style=" margin-left: 20px;">Conta Corrente:</b>
+        <p style=" margin-left: 20px;"><?php echo $_SESSION['numeroCorrente'] ?></p>
+        <b style=" margin-left: 20px;">Conta Poupança:</b>
+        <p style=" margin-left: 20px;"><?php echo $_SESSION['numeroPoupanca'] ?></p>
     </div>
     <hr>
     <div class="w3-bar-block">
