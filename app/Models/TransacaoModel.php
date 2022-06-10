@@ -94,7 +94,7 @@ for ($i = 0; $i < $meses; $i++) {
     $investimento_acumulado += $juros_compostos;
 }
 
-$valor_a_receber = $investimento_acumulado2 + $juros_compostos_total;
+$valor_a_receber = $juros_compostos_total;
 			
 $data = array(
     'tipo' => 'C',
